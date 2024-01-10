@@ -1,70 +1,31 @@
 <script>
 
 // importo store
-// import { store } from '../store';
+import { store } from '../store';
 
 export default {
     name: "FilmCard",
 
-    // data() {
-    //     return {
-    //         store,
-    //     }
-    // }
+    data() {
+        return {
+            store,
+        }
+    }
 }
 </script>
 
 <template>
     <h3>Film</h3>
     <div class="row">
-        <div class="card">
+        <div class="card" v-for="film in apiFilm">
             <div class="img"><img src="" alt=""></div>
-            <div class="titolo">a</div>
-            <div class="titolo.originale">a</div>
-            <div class="lingua">a</div>
-            <div class="voto">a</div>
+            <div class="titolo">{{ film.title }}</div>
+            <div class="titolo.originale">{{ film.original_title }}</div>
+            <div class="lingua">{{ film.original_language }}</div>
+            <div class="voto">{{ film.vote_average }}</div>
 
         </div>
-        <div class="card">
-            <div class="img"><img src="" alt=""></div>
-            <div class="titolo">a</div>
-            <div class="titolo.originale">a</div>
-            <div class="lingua">a</div>
-            <div class="voto">a</div>
 
-        </div>
-        <div class="card">
-            <div class="img"><img src="" alt=""></div>
-            <div class="titolo">a</div>
-            <div class="titolo.originale">a</div>
-            <div class="lingua">a</div>
-            <div class="voto">a</div>
-
-        </div>
-        <div class="card">
-            <div class="img"><img src="" alt=""></div>
-            <div class="titolo">a</div>
-            <div class="titolo.originale">a</div>
-            <div class="lingua">a</div>
-            <div class="voto">a</div>
-
-        </div>
-        <div class="card">
-            <div class="img"><img src="" alt=""></div>
-            <div class="titolo">a</div>
-            <div class="titolo.originale">a</div>
-            <div class="lingua">a</div>
-            <div class="voto">a</div>
-
-        </div>
-        <div class="card">
-            <div class="img"><img src="" alt=""></div>
-            <div class="titolo">a</div>
-            <div class="titolo.originale">a</div>
-            <div class="lingua">a</div>
-            <div class="voto">a</div>
-
-        </div>
     </div>
 </template>
 

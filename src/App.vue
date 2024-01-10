@@ -19,35 +19,39 @@ export default {
     }
   },
   methods: {
-    getCard() {
+    getFilm() {
 
-      if (store.statusValue) {
-        store.apiURL += `&${store.apiStatusParamentrer}=${store.statusValue}`
+      if (store.queryfilm) {
+        store.apiFilm += `&query=${store.queryfilm}`
+        axios
+          .get(store.apiFilm)
+          .then((res => {
+
+            store.apiFilm = res.data.results;
+            console.log(res.data.results);
+          }))
+          .catch((err) => {
+            console.log("Errori", err);
+          })
+
       }
 
-      axios
-        .get(store.apiURL)
-        .then((res => {
-          console.log(res.data.data);
-          store.ListCard = res.data.data;
-        }))
-        .catch((err) => {
-          console.log("Errori", err);
-        })
+
     }
 
 
   },
   created() {
-    this.getCard();
-    this.getArchetype();
+    this.getFilm();
+
+
 
   }
 }
 </script>
 
 <template>
-  <AppHeader />
+  <AppHeader @search="getFilm" />
   <main>
     <FilmCard />
 

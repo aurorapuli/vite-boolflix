@@ -1,15 +1,8 @@
 import { reactive } from 'vue'
 
 export const store = reactive({
-    // ListCard: [],
-    // apiURL: "https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0",
-
-
-    // apiArchetype: "https://db.ygoprodeck.com/api/v7/archetypes.php",
-    // ListArchetype: [],
-    // statusValue: "",
-    // apiStatusParamentrer: "archetype",
 
     ListFilm: [],
-    apiFilm: ""
+    apiFilm: "https://api.themoviedb.org/3/search/movie?api_key=68a623aa06584ac14c2298104440fc7d",
+    queryfilm: ""
 })

@@ -1,16 +1,16 @@
 <script>
 
 // importo store
-// import { store } from '../store';
+import { store } from '../store';
 
 export default {
     name: "AppHeader",
 
-    // data() {
-    //     return {
-    //         store,
-    //     }
-    // }
+    data() {
+        return {
+            store,
+        }
+    }
 }
 </script>
 
@@ -18,8 +18,8 @@ export default {
     <header>
         <h1>BOOLFIX</h1>
         <div class="search">
-            <input type="text">
-            <div class="button">Search</div>
+            <input type="text" v-model="store.queryfilm">
+            <div class="button" @click="$emit('search')">Search</div>
         </div>
     </header>
 </template>
