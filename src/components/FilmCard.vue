@@ -17,7 +17,7 @@ export default {
 <template>
     <h3>Film</h3>
     <div class="row">
-        <div class="card" v-for="film in apiFilm">
+        <div class="card" v-for="film in store.apiFilm">
             <div class="img"><img src="" alt=""></div>
             <div class="titolo">{{ film.title }}</div>
             <div class="titolo.originale">{{ film.original_title }}</div>
@@ -34,9 +34,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
 
-    // .card {
-    //     width: calc((100% / 5) - 20px);
-    //     margin: 0 10px;
-    // }
+    .card {
+        width: calc((100% / 5) - 20px);
+        margin: 0 10px;
+    }
 }
 </style>
