@@ -27,16 +27,18 @@ export default {
           .get(store.apiFilm)
           .then((res => {
 
-            store.apiFilm = res.data.results;
+            store.ListFilm = res.data.results;
             console.log(res.data.results);
           }))
           .catch((err) => {
             console.log("Errori", err);
           })
 
-      }
-      store.queryfilm = ""
 
+
+      }
+
+      store.queryfilm = ""
     }
 
 
