@@ -14,16 +14,23 @@ export default {
     methods: {
         getImage: function (imgPath) {
             return new URL(imgPath, import.meta.url).href
+        },
+
+        getPoster(imgPoster) {
+            return "http://image.tmdb.org/t/p/w342" + imgPoster;
         }
+
+
+
     }
 }
 </script>
 
 <template>
-    <h3>Film</h3>
+    <h3>FILM</h3>
     <div class="row">
         <div class="card" v-for="film in store.ListFilm">
-            <div class="img"><img src="" alt=""></div>
+            <div class="img"><img v-if="film.poster_path" :src="getPoster(film.poster_path)" alt=""></div>
             <div class="titolo">{{ film.title }}</div>
             <div class="titolo.originale"><img src="" alt="">{{ film.original_title }}</div>
             <div class="lingua"> <img :src="getImage(`../assets/${film.original_language}.png`)" alt=""></div>
@@ -35,13 +42,19 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+h3 {
+    font-size: 30px;
+    color: white;
+}
+
 .row {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 40px;
 
     .card {
         width: calc((100% / 5) - 20px);
-        margin: 0 10px;
+        margin: 0 10px 70px 10px;
 
         .lingua {
             width: 20px;

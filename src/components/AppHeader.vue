@@ -35,6 +35,7 @@ header {
 
     h1 {
         color: red;
+        font-size: 50px;
     }
 
     .search {
