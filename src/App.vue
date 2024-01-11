@@ -1,6 +1,7 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
 import FilmCard from './components/FilmCard.vue'
+import SerieCard from './components/SerieCard.vue'
 
 // importo axios
 import axios from 'axios';
@@ -11,7 +12,8 @@ import { store } from './store';
 export default {
   components: {
     AppHeader,
-    FilmCard
+    FilmCard,
+    SerieCard
   },
   data() {
     return {
@@ -23,6 +25,8 @@ export default {
 
       if (store.queryfilm) {
         store.apiFilm += `&query=${store.queryfilm}`
+        store.apiSerie += `&query=${store.queryfilm}`
+
         axios
           .get(store.apiFilm)
           .then((res => {
@@ -34,19 +38,26 @@ export default {
             console.log("Errori", err);
           })
 
+        axios
 
+          .get(store.apiSerie)
+          .then((res => {
+
+            store.ListSerie = res.data.results;
+            console.log(res.data.results);
+          }))
+          .catch((err) => {
+            console.log("Errori", err);
+          })
 
       }
 
       store.queryfilm = ""
     }
 
-
   },
   created() {
     this.getFilm();
-
-
 
   }
 }
@@ -56,6 +67,7 @@ export default {
   <AppHeader @search="getFilm" />
   <main>
     <FilmCard />
+    <SerieCard />
 
   </main>
 </template>
