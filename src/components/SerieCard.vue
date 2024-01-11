@@ -17,6 +17,9 @@ export default {
         },
         getPoster(imgPoster) {
             return "http://image.tmdb.org/t/p/w342" + imgPoster;
+        },
+        numRound(num) {
+            return Math.round(num / 2);
         }
     }
 }
@@ -27,11 +30,12 @@ export default {
     <div class="row">
         <div class="card" v-for="serie in store.ListSerie">
             <div class="img"><img v-if="serie.poster_path" :src="getPoster(serie.poster_path)" alt=""></div>
-            <div class="titolo">{{ serie.name }}</div>
-            <div class="titolo.originale">{{ serie.original_name }}</div>
+            <div class="titolo">Titolo: {{ serie.name }}</div>
+            <div class="titolo.originale">Titolo originale: {{ serie.original_name }}</div>
             <div class="lingua"> <img :src="getImage(`../assets/${serie.original_language}.png`)" alt=""></div>
-            <div class="voto">{{ serie.vote_average }}</div>
-
+            <div class="voto">Voto:<i v-for="star in 5 " :key="star"
+                    :class="{ 'fa-solid fa-star': star <= numRound(serie.vote_average), 'fa-regular fa-star': star > numRound(serie.vote_average) }"></i>
+            </div>
         </div>
 
     </div>
@@ -50,7 +54,8 @@ h3 {
 
     .card {
         width: calc((100% / 5) - 20px);
-        margin: 0 10px;
+        margin: 0 10px 70px 10px;
+        color: white;
 
         .lingua {
             width: 20px;
