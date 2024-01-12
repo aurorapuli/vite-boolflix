@@ -33,13 +33,29 @@ export default {
     <h3>FILM</h3>
     <div class="row">
         <div class="card" v-for="film in store.ListFilm">
-            <div class="img"><img v-if="film.poster_path" :src="getPoster(film.poster_path)" alt=""></div>
-            <div class="titolo">Titolo: {{ film.title }}</div>
-            <div class="titolo.originale"><img src="" alt="">Titolo originale:{{ film.original_title }}</div>
-            <div class="lingua"> <img :src="getImage(`../assets/${film.original_language}.png`)" alt=""></div>
-            <div class="voto">Voto:<i v-for="star in 5 " :key="star"
-                    :class="{ 'fa-solid fa-star': star <= numRound(film.vote_average), 'fa-regular fa-star': star > numRound(film.vote_average) }"></i>
+            <div class="card-inner">
+                <div class="card-front">
+                    <div class="img"><img v-if="film.poster_path" :src="getPoster(film.poster_path)" alt=""></div>
+
+                </div>
+                <div class="card-back">
+                    <div class="titolo"><strong>Titolo</strong>: {{ film.title }}</div>
+                    <div class="titolo.originale"><strong>Titolo originale</strong>: {{
+                        film.original_title }}</div>
+                    <div class="lingua"> <img :src="getImage(`../assets/${film.original_language}.png`)" alt=""></div>
+                    <div class="voto"><strong>Voto</strong>: <i v-for="star in 5 " :key="star"
+                            :class="{ 'fa-solid fa-star': star <= numRound(film.vote_average), 'fa-regular fa-star': star > numRound(film.vote_average) }"></i>
+                    </div>
+                    <div class="overvew"><strong>Overvew</strong>:
+                        {{ film.overview }}
+                    </div>
+
+                </div>
+
+
+
             </div>
+
 
         </div>
 
@@ -58,9 +74,42 @@ h3 {
     margin-top: 40px;
 
     .card {
-        width: calc((100% / 5) - 20px);
+        width: 342px;
+        height: 515px;
         margin: 0 10px 70px 10px;
         color: white;
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+
+            .card-front,
+            .card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+
+            }
+
+            .card-back {
+                transform: rotateY(180deg);
+                background-color: black;
+
+                div {
+                    margin: 10px;
+                }
+
+
+
+            }
+
+        }
 
         .lingua {
             width: 20px;
@@ -70,5 +119,9 @@ h3 {
             }
         }
     }
+}
+
+.card:hover .card-inner {
+    transform: rotateY(180deg);
 }
 </style>
